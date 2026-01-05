@@ -1,0 +1,153 @@
+<div class="chaohgg-flashcard">
+    <div class="hide-style">
+        <div id="audio">{{audio_for_word}}</div>
+        <div id="audio_sentence">{{audio_for_example_sentence}}</div>
+    </div>
+
+    <div class="chaohgg-title-card">
+        <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
+            <div class="ruby-div" id="word">{{ word }}</div>
+            <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
+        </div>
+    </div>
+
+    <div class="chaohgg-body-card">
+        <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
+            {{example_sentence}}
+        </div>
+        <div id="remarks" class="centerdiv centertext remark-div">
+            {{remarks}}
+        </div>
+        <div id="image" class="centerdiv">
+            {{screenshot}}
+        </div>
+    </div>
+
+    <div id="dict_card" class="chaohgg-dict-card">
+        <div class="tab-widget">
+            <div class="centerdiv" id="tab_buttons"></div>
+            <div class="centerdiv">
+                <div class="tab-content" id="tab_contents"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function initBack() {
+        toggleRuby();
+        initDictionary();
+        checkhide("example_sentence");
+        checkhide("remarks");
+        checkhide2("image");
+    })();
+
+    function toggleRuby() {
+        var ruby = document.getElementById('rubyword');
+        var word = document.getElementById('word');
+        if (!ruby || !word) return;
+        if (ruby.innerHTML.trim().length > 0) {
+            word.classList.add("hide-style");
+        }
+        else {
+            ruby.classList.add("hide-style");
+        }
+    }
+
+    function onclickbtn(_id) {
+        var widget = document.querySelector('#dict_card .tab-widget');
+        if (!widget) return;
+
+        var tabButtons = widget.querySelectorAll('.tab-button');
+        var tabPanes = widget.querySelectorAll('.tab-pane');
+        for (var i = 0; i < tabButtons.length; i++)
+            tabButtons[i].classList.remove('active');
+        for (var i = 0; i < tabPanes.length; i++)
+            tabPanes[i].classList.remove('active');
+
+        var btn = document.getElementById('luna_dict_btn_' + _id);
+        var pane = document.getElementById('luna_dict_tab_' + _id);
+        if (btn) btn.classList.add('active');
+        if (pane) pane.classList.add('active');
+    }
+
+    function initDictionary() {
+        var dictCard = document.getElementById('dict_card');
+        if (!dictCard) return;
+        var dictionaryInfo = {{ dictionaryInfo }};
+        var dictionaryContent = {{ dictionaryContent }};
+        var htmltabbuttons = '';
+        var htmlcontents = '';
+        var scriptElementss = [];
+        var scriptElementsssrc = [];
+
+        if (!dictionaryInfo || !dictionaryContent || dictionaryInfo.length === 0) {
+            dictCard.classList.add('hide-style');
+            return;
+        }
+        if (dictionaryInfo.length == 1) {
+            document.getElementById('tab_buttons').style.display = 'none';
+        }
+        for (var iiii = 0; iiii < dictionaryInfo.length; iiii++) {
+            var dictId = dictionaryInfo[iiii]['dict'];
+            htmltabbuttons += '<button type="button" onclick="onclickbtn(\'' + dictId + '\')" id="luna_dict_btn_' + dictId + '" class="tab-button' + (iiii == 0 ? ' active' : '') + '">' + dictionaryInfo[iiii]['name'] + '</button>';
+
+            var rawContent = dictionaryContent[dictId] || '';
+            var tempParent = document.createElement('div');
+            try {
+                tempParent.innerHTML = decodeURIComponent(rawContent);
+            } catch (e) {
+                tempParent.innerHTML = rawContent;
+            }
+
+            var fragment = document.createElement('div');
+            while (tempParent.firstChild) {
+                fragment.appendChild(tempParent.firstChild);
+            }
+
+            htmlcontents += '<div id="luna_dict_tab_' + dictId + '" class="tab-pane' + (iiii == 0 ? ' active' : '') + '">' + fragment.innerHTML + '</div>';
+            var scriptElements = fragment.getElementsByTagName('script');
+
+            for (var jjjj = 0; jjjj < scriptElements.length; jjjj++) {
+                scriptElementss.push(scriptElements[jjjj].textContent);
+                scriptElementsssrc.push(scriptElements[jjjj].src);
+            }
+        }
+
+        if (htmltabbuttons.trim() === '' && htmlcontents.trim() === '') {
+            dictCard.classList.add('hide-style');
+            return;
+        }
+
+        document.getElementById('tab_buttons').innerHTML = htmltabbuttons;
+        document.getElementById('tab_contents').innerHTML = htmlcontents;
+        for (var iiii = 0; iiii < scriptElementss.length; iiii++) {
+            eval(scriptElementss[iiii]);
+            let newScript = document.createElement('script');
+            if (scriptElementsssrc[iiii]) {
+                newScript.src = scriptElementsssrc[iiii];
+                document.head.appendChild(newScript);
+            }
+        }
+    }
+
+    function playAudio(audioId) {
+        var audioDiv = document.getElementById(audioId);
+        var audio = audioDiv ? audioDiv.getElementsByTagName('*') : [];
+        if (audio.length > 0) {
+            audio[0].click();
+        }
+    }
+    function checkhide(eid) {
+        var emptyDiv = document.getElementById(eid);
+        if (emptyDiv && emptyDiv.innerText.trim() === "") {
+            emptyDiv.classList.add("hide-style");
+        }
+    }
+    function checkhide2(eid) {
+        var emptyDiv = document.getElementById(eid);
+        if (emptyDiv && emptyDiv.children.length == 0) {
+            emptyDiv.classList.add("hide-style");
+        }
+    }
+</script>
