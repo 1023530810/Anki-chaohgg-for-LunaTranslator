@@ -1,21 +1,25 @@
 <div class="chaohgg-flashcard">
-    <div class="hide-style">
-        <div id="audio">{{audio_for_word}}</div>
-    </div>
+    <div class="luna-frame luna-frame--single">
+        <div class="luna-pane luna-pane--main">
+            <div class="hide-style">
+                <div id="audio">{{audio_for_word}}</div>
+            </div>
 
-    <div class="chaohgg-title-card">
-        <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
-            <div class="ruby-div" id="word">{{ word }}</div>
-            <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
-        </div>
-    </div>
+            <div class="chaohgg-title-card">
+                <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
+                    <div class="ruby-div" id="word">{{ word }}</div>
+                    <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
+                </div>
+            </div>
 
-    <div class="chaohgg-body-card">
-        <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
-            {{example_sentence}}
-        </div>
-        <div id="image" class="centerdiv">
-            {{screenshot}}
+            <div class="chaohgg-body-card">
+                <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
+                    {{example_sentence}}
+                </div>
+                <div id="image" class="centerdiv">
+                    {{screenshot}}
+                </div>
+            </div>
         </div>
     </div>
 </div>

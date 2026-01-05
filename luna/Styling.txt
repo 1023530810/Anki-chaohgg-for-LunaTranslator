@@ -17,10 +17,22 @@ html {
     font-size: var(--font-size-lg);
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 .card {
     background-color: #e4dfd7;
     cursor: default;
-    padding: 0.5em 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     --card-bg: #fffefa;
     --card-border: transparent;
     --card-shadow: #d4c4b740;
@@ -126,8 +138,12 @@ html {
     font-family: var(--font-primary);
     font-size: 1rem;
     line-height: 1.7;
-    margin: 0 auto;
-    max-width: var(--card-max-width);
+    margin: 0;
+    width: 100vw;
+    min-height: 100vh;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
     text-align: var(--card-text-align);
     word-wrap: break-word;
 }
@@ -135,6 +151,43 @@ html {
 .chaohgg-flashcard ::selection {
     background-color: var(--text-bg-selected);
     color: var(--text-fg-selected);
+}
+
+.luna-frame {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.luna-frame--single {
+    flex-direction: column;
+}
+
+.luna-pane {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .luna-frame {
+        flex-direction: column;
+    }
+    .luna-pane {
+        flex: 1 1 50%;
+    }
 }
 
 .chaohgg-title-card,

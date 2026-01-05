@@ -1,32 +1,39 @@
 <div class="chaohgg-flashcard">
-    <div class="hide-style">
-        <div id="audio_sentence">{{audio_for_example_sentence}}</div>
-    </div>
+    <div class="luna-frame">
+        <div class="luna-pane luna-pane--main">
+            <div class="hide-style">
+                <div id="audio">{{audio_for_word}}</div>
+                <div id="audio_sentence">{{audio_for_example_sentence}}</div>
+            </div>
 
-    <div class="chaohgg-title-card">
-        <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
-            <div class="ruby-div" id="word">{{ word }}</div>
-            <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
-        </div>
-    </div>
+            <div class="chaohgg-title-card">
+                <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
+                    <div class="ruby-div" id="word">{{ word }}</div>
+                    <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
+                </div>
+            </div>
 
-    <div class="chaohgg-body-card">
-        <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
-            {{example_sentence}}
+            <div class="chaohgg-body-card">
+                <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
+                    {{example_sentence}}
+                </div>
+                <div id="remarks" class="centerdiv centertext remark-div">
+                    {{remarks}}
+                </div>
+                <div id="image" class="centerdiv">
+                    {{screenshot}}
+                </div>
+            </div>
         </div>
-        <div id="remarks" class="centerdiv centertext remark-div">
-            {{remarks}}
-        </div>
-        <div id="image" class="centerdiv">
-            {{screenshot}}
-        </div>
-    </div>
 
-    <div id="dict_card" class="chaohgg-dict-card">
-        <div class="tab-widget">
-            <div class="centerdiv" id="tab_buttons"></div>
-            <div class="centerdiv">
-                <div class="tab-content" id="tab_contents"></div>
+        <div class="luna-pane luna-pane--dict">
+            <div id="dict_card" class="chaohgg-dict-card">
+                <div class="tab-widget">
+                    <div class="centerdiv" id="tab_buttons"></div>
+                    <div class="centerdiv">
+                        <div class="tab-content" id="tab_contents"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -106,6 +113,8 @@
     }
 
     function initDictionary() {
+        var frame = document.querySelector('.luna-frame');
+        var dictPane = document.querySelector('.luna-pane--dict');
         var dictCard = document.getElementById('dict_card');
         if (!dictCard) return;
         var dictionaryInfo = {{ dictionaryInfo }};
@@ -116,7 +125,7 @@
         var scriptElementsssrc = [];
 
         if (!dictionaryInfo || !dictionaryContent || dictionaryInfo.length === 0) {
-            dictCard.classList.add('hide-style');
+            setSingleLayout(frame, dictPane, dictCard);
             return;
         }
         if (dictionaryInfo.length == 1) {
@@ -149,7 +158,7 @@
         }
 
         if (htmltabbuttons.trim() === '' && htmlcontents.trim() === '') {
-            dictCard.classList.add('hide-style');
+            setSingleLayout(frame, dictPane, dictCard);
             return;
         }
 
@@ -166,6 +175,12 @@
             }
             document.head.appendChild(newScript);
         }
+        if (frame) {
+            frame.classList.remove('luna-frame--single');
+        }
+        if (dictPane) {
+            dictPane.classList.remove('hide-style');
+        }
     }
 
     function playAudio(audioId) {
@@ -174,6 +189,11 @@
         if (audio.length > 0) {
             audio[0].click();
         }
+    }
+    function setSingleLayout(frame, dictPane, dictCard) {
+        if (dictCard) dictCard.classList.add('hide-style');
+        if (dictPane) dictPane.classList.add('hide-style');
+        if (frame) frame.classList.add('luna-frame--single');
     }
     function checkhide(eid) {
         var emptyDiv = document.getElementById(eid);
