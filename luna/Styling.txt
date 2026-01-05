@@ -175,7 +175,7 @@ html, body {
     flex-direction: column;
     align-items: stretch;
     margin: 0;
-    padding: 0;
+    padding: clamp(0.4em, 2vw, 1.2em);
     border: 0;
     min-width: 0;
     min-height: 0;
@@ -198,18 +198,23 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: var(--card-gap);
-    padding: var(--card-gap);
+    padding: 0;
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
     min-width: 0;
     min-height: 0;
+    border: 0 solid transparent;
     border-radius: var(--pane-radius);
-    background: var(--card-bg);
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.luna-pane-content::-webkit-scrollbar {
+    display: none;
 }
 
 .chaohgg-title-card,
@@ -228,6 +233,7 @@ html, body {
 
 .chaohgg-title-card {
     margin: 0;
+    margin-top: 0;
 }
 
 .chaohgg-body-card,
@@ -236,6 +242,11 @@ html, body {
     display: flex;
     flex-direction: column;
     row-gap: 0.6em;
+}
+
+.chaohgg-dict-card {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .chaohgg-title {
@@ -304,6 +315,15 @@ html, body {
 .centerdiv {
     display: flex;
     justify-content: center;
+}
+
+.centerdiv_mdict_internal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    width: 100%;
 }
 
 .centertext {
