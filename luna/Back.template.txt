@@ -24,12 +24,10 @@
     </div>
 
     <div id="dict_card" class="chaohgg-dict-card">
-        <div class="dict-top">
-            <div class="tab-widget">
-                <div class="centerdiv dict-parent-bar" id="tab_buttons"></div>
-                <div class="centerdiv">
-                    <div class="tab-content" id="tab_contents"></div>
-                </div>
+        <div class="tab-widget">
+            <div class="centerdiv" id="tab_buttons"></div>
+            <div class="centerdiv">
+                <div class="tab-content" id="tab_contents"></div>
             </div>
         </div>
     </div>
@@ -107,8 +105,7 @@
                 fragment.appendChild(tempParent.firstChild);
             }
 
-            // 若内层存在二级 tab，可在 JS 或字段端包裹 dict-child-wrap，这里保证容器类挂在外层 tab-pane 上
-            htmlcontents += '<div id="luna_dict_tab_' + dictId + '" class="tab-pane luna-dict-pane' + (iiii == 0 ? ' active' : '') + '"><div class="dict-child-wrap">' + fragment.innerHTML + '</div></div>';
+            htmlcontents += '<div id="luna_dict_tab_' + dictId + '" class="tab-pane luna-dict-pane' + (iiii == 0 ? ' active' : '') + '">' + fragment.innerHTML + '</div>';
             var scriptElements = fragment.getElementsByTagName('script');
 
             for (var jjjj = 0; jjjj < scriptElements.length; jjjj++) {

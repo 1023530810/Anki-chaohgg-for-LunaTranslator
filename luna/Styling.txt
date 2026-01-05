@@ -205,64 +205,6 @@ html {
     cursor: pointer;
 }
 
-/* 辞典区域外框与分层样式 */
-#dict_card .dict-top {
-    background: #f4f1ea;
-    border: 1px solid #e0d8c8;
-    border-radius: 14px;
-    padding: 12px 14px 16px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-}
-
-#dict_card .dict-top .dict-parent-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-#dict_card .dict-top .dict-parent-bar .luna-dict-btn {
-    padding: 8px 14px;
-    border-radius: 12px;
-    background: #e3e0da;
-    color: #444;
-    border: 1px solid transparent;
-}
-
-#dict_card .dict-top .dict-parent-bar .luna-dict-btn.active {
-    background: #8aaed6;
-    color: #fff;
-    border-color: #7b9dc0;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-#dict_card .dict-top .dict-child-wrap {
-    background: #ede8de;
-    border: 1px solid #ddd2c0;
-    border-radius: 10px;
-    padding: 8px 10px;
-    margin-bottom: 12px;
-}
-
-#dict_card .dict-top .dict-child-wrap .tab-widget .tab-button {
-    padding: 6px 12px;
-    border-radius: 10px;
-    background: #f6f2ec;
-    color: #555;
-    border: 1px solid transparent;
-    margin: 4px 6px 0 0;
-}
-
-#dict_card .dict-top .dict-child-wrap .tab-widget .tab-button.active {
-    background: #cfa86b;
-    color: #fff;
-    border-color: #c2914d;
-}
-
-#dict_card .dict-top .tab-content {
-    margin-top: 8px;
-}
-
 .chaohgg-divider {
     background-color: transparent;
     border: none;
