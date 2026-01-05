@@ -1,7 +1,6 @@
 <div class="chaohgg-flashcard">
     <div class="hide-style">
         <div id="audio">{{audio_for_word}}</div>
-        <div id="audio_sentence">{{audio_for_example_sentence}}</div>
     </div>
 
     <div class="chaohgg-title-card">

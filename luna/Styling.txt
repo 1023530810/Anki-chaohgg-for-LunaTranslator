@@ -157,7 +157,7 @@ html {
     margin: 0 2em var(--card-gap);
     display: flex;
     flex-direction: column;
-    row-gap: 1.2em;
+    row-gap: 0.6em;
 }
 
 .chaohgg-title {
@@ -238,7 +238,7 @@ html {
 }
 
 .example-div {
-    text-align: center;
+    text-align: left;
     font-family: BIZ UDGothic;
     font-size: 24px;
     cursor: pointer;
@@ -246,7 +246,33 @@ html {
 
 .remark-div {
     font-family: BIZ UDGothic;
-    font-size: 22px;
+    font-size: 18px;
+    display: block;
+    padding: 0.75em 1em;
+    margin: 0.2em 0;
+    background-color: rgba(247, 244, 237, 0.8);
+    border: 1px solid var(--card-border);
+    border-radius: 0.5em;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+    text-align: left;
+    line-height: 1.6;
+}
+
+.remark-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4em;
+    margin: 0.2em 0;
+}
+
+.remark-line-prefix {
+    font-weight: 700;
+}
+
+.card.nightMode .remark-div {
+    background-color: rgba(62, 56, 65, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
 .ruby-div {
@@ -258,7 +284,7 @@ html {
 img {
     border-radius: 0.25em;
     display: block;
-    margin: 1em auto;
+    margin: 0.5em auto;
     max-width: var(--img-width) !important;
     transition: max-width 0.25s 0.1s, opacity 0.25s 0.1s, filter 0.1s, transform 0s;
 }
