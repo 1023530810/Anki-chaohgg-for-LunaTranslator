@@ -9,6 +9,7 @@
     --font-size-xl: 20px;
     --card-gap: 1.2em;
     --pane-radius: 0.6em;
+    --dict-sticky-offset: 0.8em;
     --img-width: 100%;
     --img-brightness: 1;
     --img-filter: none;
@@ -179,7 +180,7 @@ html, body {
     border: 0;
     min-width: 0;
     min-height: 0;
-    overflow: visible;
+    overflow: hidden;
     box-sizing: border-box;
 }
 
@@ -207,10 +208,10 @@ html, body {
     min-height: 0;
     border: 0 solid transparent;
     border-radius: var(--pane-radius);
-    overflow: hidden;
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: none;
+    position: relative;
 }
 
 .luna-pane-content::-webkit-scrollbar {
@@ -315,15 +316,24 @@ html, body {
 .centerdiv {
     display: flex;
     justify-content: center;
-}
-
-.centerdiv_mdict_internal {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     align-self: stretch;
     width: 100%;
+}
+
+#tab_buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--dict-sticky-offset);
+    z-index: 3;
+    background: inherit;
+    padding-top: 0.2em;
+    padding-bottom: 0.4em;
 }
 
 .centertext {
@@ -505,4 +515,58 @@ u {
 
 .tab-widget .tab-content .tab-pane.active {
     display: block;
+}
+
+.chaohgg-dict-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    position: relative;
+    overflow: auto;
+}
+
+.chaohgg-dict-card .tab-widget {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--dict-sticky-offset);
+    z-index: 4;
+    background: inherit;
+}
+
+.chaohgg-dict-card .tab-pane {
+    position: relative;
+    overflow: visible;
+}
+
+.chaohgg-dict-card .tab-pane .centerdiv_mdict_internal {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: var(--dict-sticky-offset) !important;
+    z-index: 4 !important;
+    background: inherit;
+}
+
+.luna-pane--dict .luna-pane-content {
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.luna-pane--dict .chaohgg-dict-card {
+    flex: 1 1 auto;
+    position: relative;
+    overflow: auto;
+    height: 100%;
+}
+
+.chaohgg-dict-card {
+    scrollbar-width: none;
+}
+
+.chaohgg-dict-card::-webkit-scrollbar {
+    display: none;
 }
