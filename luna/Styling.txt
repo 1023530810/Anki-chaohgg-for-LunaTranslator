@@ -8,6 +8,7 @@
     --font-size-lg: 18px;
     --font-size-xl: 20px;
     --card-gap: 1.2em;
+    --pane-radius: 0.6em;
     --img-width: 100%;
     --img-brightness: 1;
     --img-filter: none;
@@ -139,9 +140,9 @@ html, body {
     font-size: 1rem;
     line-height: 1.7;
     margin: 0;
-    width: 100vw;
-    min-height: 100vh;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     text-align: var(--card-text-align);
@@ -172,12 +173,13 @@ html, body {
     flex: 1 1 50%;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     margin: 0;
     padding: 0;
     border: 0;
     min-width: 0;
     min-height: 0;
-    overflow: auto;
+    overflow: visible;
     box-sizing: border-box;
 }
 
@@ -190,6 +192,26 @@ html, body {
     }
 }
 
+.luna-pane-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--card-gap);
+    padding: var(--card-gap);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    min-width: 0;
+    min-height: 0;
+    border-radius: var(--pane-radius);
+    background: var(--card-bg);
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .chaohgg-title-card,
 .chaohgg-body-card,
 .chaohgg-dict-card {
@@ -198,16 +220,19 @@ html, body {
     border-radius: 0.6em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     padding: 0.9em 1.6em;
-    max-width: var(--card-max-width);
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    box-sizing: border-box;
 }
 
 .chaohgg-title-card {
-    margin: 0.8em 2em var(--card-gap);
+    margin: 0;
 }
 
 .chaohgg-body-card,
 .chaohgg-dict-card {
-    margin: 0 2em var(--card-gap);
+    margin: 0;
     display: flex;
     flex-direction: column;
     row-gap: 0.6em;
