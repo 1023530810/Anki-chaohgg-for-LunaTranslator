@@ -12,6 +12,7 @@
     --pane-radius: 0.6em;
     --dict-sticky-offset: 0.8em;
     --dict-tabs-height: 0px;
+    --dict-centerdiv-height: 0px;
     --img-width: 100%;
     --img-brightness: 1;
     --img-filter: none;
@@ -326,8 +327,11 @@ html, body {
 .centerdiv {
     display: flex;
     justify-content: center;
+    align-items: center;
     align-self: stretch;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #tab_buttons {
@@ -342,8 +346,8 @@ html, body {
     top: var(--dict-sticky-offset);
     z-index: 3;
     background: inherit;
-    padding-top: 0.2em;
-    padding-bottom: 0.4em;
+    margin: 0;
+    padding: 0;
 }
 
 .centertext {
@@ -559,8 +563,10 @@ u {
     width: 100% !important;
     position: -webkit-sticky !important;
     position: sticky !important;
-    top: calc(var(--dict-sticky-offset) + var(--dict-tabs-height, 0px)) !important;
+    top: calc(var(--dict-sticky-offset) + var(--dict-tabs-height, 0px) + var(--dict-centerdiv-height, 0px)) !important;
     z-index: 4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background-color: var(--card-bg);
 }
 

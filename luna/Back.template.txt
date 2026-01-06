@@ -79,6 +79,7 @@
         var pane = document.getElementById('luna_dict_tab_' + _id);
         if (btn) btn.classList.add('active');
         if (pane) pane.classList.add('active');
+        updateDictStickyOffsets(document.getElementById('dict_card'));
     }
 
     function formatRemarks() {
@@ -200,10 +201,23 @@
         if (frame) frame.classList.add('luna-frame--single');
     }
     function updateDictStickyOffsets(dictCard) {
+        if (!dictCard) return;
+
         var buttons = document.getElementById('tab_buttons');
-        if (!buttons || !dictCard) return;
-        var height = buttons.getBoundingClientRect().height || 0;
-        dictCard.style.setProperty('--dict-tabs-height', height + 'px');
+        var tabsHeight = buttons ? (buttons.getBoundingClientRect().height || 0) : 0;
+        dictCard.style.setProperty('--dict-tabs-height', tabsHeight + 'px');
+
+        var activePane = dictCard.querySelector('.tab-pane.active');
+        var centerDiv = activePane ? activePane.querySelector('.centerdiv:not(.centerdiv_mdict_internal)') : null;
+        var centerHeight = 0;
+        if (centerDiv) {
+            var rect = centerDiv.getBoundingClientRect();
+            var styles = window.getComputedStyle(centerDiv);
+            var marginTop = parseFloat(styles.marginTop) || 0;
+            var marginBottom = parseFloat(styles.marginBottom) || 0;
+            centerHeight = rect.height + marginTop + marginBottom;
+        }
+        dictCard.style.setProperty('--dict-centerdiv-height', centerHeight + 'px');
     }
     function checkhide(eid) {
         var emptyDiv = document.getElementById(eid);
