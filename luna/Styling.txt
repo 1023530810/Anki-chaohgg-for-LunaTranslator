@@ -233,7 +233,14 @@ html, body {
     :root {
         --pane-gap: 0.8em;
     }
+    .luna-splitter {
+        width: 100%;
+        height: 8px;
+        margin: 0.35em 0;
+        cursor: row-resize;
+    }
 }
+
 
 .luna-pane-content::-webkit-scrollbar {
     display: none;
@@ -620,7 +627,7 @@ u {
     flex: 0 0 auto;
     width: 6px;
     margin: 0 0.25em;
-    background: var(--divider);
+    background: rgba(247, 244, 237, 0.8);
     border-radius: 999px;
     cursor: col-resize;
     align-self: stretch;
@@ -628,7 +635,7 @@ u {
 }
 
 .luna-splitter:hover {
-    background: var(--link-fg);
+    background: rgba(247, 244, 237, 1);
 }
 
 .luna-frame--single .luna-splitter {
@@ -636,9 +643,9 @@ u {
 }
 
 .card.nightMode .luna-splitter {
-    background: var(--divider);
+    background: rgba(62, 56, 65, 0.6);
 }
 
 .card.nightMode .luna-splitter:hover {
-    background: var(--link-fg);
+    background: rgba(62, 56, 65, 0.8);
 }

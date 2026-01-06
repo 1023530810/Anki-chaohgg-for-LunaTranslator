@@ -241,6 +241,11 @@
 
         var storageKey = 'luna_split_ratio_v1';
 
+        function isVertical() {
+            var dir = window.getComputedStyle(frame).flexDirection || 'row';
+            return dir.indexOf('column') !== -1;
+        }
+
         function applySplitRatio(ratio) {
             var clamped = Math.min(0.85, Math.max(0.15, ratio));
             mainPane.style.flex = clamped + ' 1 0%';
@@ -269,7 +274,10 @@
             if (!dragging) return;
             var point = e.touches && e.touches.length ? e.touches[0] : e;
             var rect = frame.getBoundingClientRect();
-            var ratio = (point.clientX - rect.left) / rect.width;
+            var vertical = isVertical();
+            var ratio = vertical
+                ? (point.clientY - rect.top) / rect.height
+                : (point.clientX - rect.left) / rect.width;
             var applied = applySplitRatio(ratio);
             localStorage.setItem(storageKey, applied.toFixed(3));
         }
