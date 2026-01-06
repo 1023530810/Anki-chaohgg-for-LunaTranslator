@@ -218,6 +218,12 @@ html, body {
     position: relative;
 }
 
+.luna-frame--single .luna-pane-content {
+    max-width: var(--card-max-width);
+    width: 60%;
+    margin: 0 auto;
+}
+
 .luna-pane-content::-webkit-scrollbar {
     display: none;
 }
