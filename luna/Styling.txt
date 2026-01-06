@@ -7,7 +7,7 @@
     --font-size-base: 16px;
     --font-size-lg: 18px;
     --font-size-xl: 20px;
-    --card-gap: 1.2em;
+    --card-gap: var(--pane-gap);
     --pane-gap: clamp(0.4em, 2vw, 1.2em);
     --pane-radius: 0.6em;
     --dict-sticky-offset: 0.8em;
@@ -229,6 +229,9 @@ html, body {
     .luna-frame {
         padding-left: clamp(0.8em, 4vw, 1.6em);
         padding-right: clamp(0.8em, 4vw, 1.6em);
+    }
+    :root {
+        --pane-gap: 0.8em;
     }
 }
 
@@ -525,6 +528,18 @@ u {
     cursor: pointer;
     display: inline-block;
     line-height: 20px;
+}
+
+.tab-widget .tab-button.luna-dict-btn,
+.tab-widget .tab-button.luna-dict-btn.active {
+    margin: 1em 0.5em;
+    border-radius: 0.6em;
+}
+
+.tab-button_mdict_internal,
+.tab-button_mdict_internal.active {
+    border-radius: 0.6em !important;
+    border-top: 0 !important;
 }
 
 .tab-widget .tab-button.active {
