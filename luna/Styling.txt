@@ -166,7 +166,7 @@ html, body {
     padding: var(--pane-gap);
     border: 0;
     overflow: hidden;
-    gap: var(--pane-gap);
+    gap: calc(var(--pane-gap) / 2);
     box-sizing: border-box;
 }
 
@@ -236,9 +236,9 @@ html, body {
     .luna-splitter {
         display: block;
         width: 100% !important;
-        height: 8px;
+        height: 6px;
         flex: 0 0 8px;
-        margin: 0.35em 0;
+        margin: 0;
         cursor: ns-resize !important;
         align-self: stretch;
     }
