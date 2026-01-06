@@ -48,4 +48,7 @@
 - [LunaTranslator](https://github.com/HIllya51/LunaTranslator)
 - [anki-quizify](https://github.com/e-chehil/anki-quizify)
 
+## ❤️ 来赞助我
+ ![IMG_5311](https://github.com/user-attachments/assets/93e219ac-345d-4e5d-9a03-19a11e77c15f)
+
 Enjoy your study! 🚀
