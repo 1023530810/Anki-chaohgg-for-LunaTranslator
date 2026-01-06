@@ -226,6 +226,10 @@ html, body {
         max-width: 100%;
         width: 100%;
     }
+    .luna-frame {
+        padding-left: clamp(0.8em, 4vw, 1.6em);
+        padding-right: clamp(0.8em, 4vw, 1.6em);
+    }
 }
 
 .luna-pane-content::-webkit-scrollbar {
@@ -249,6 +253,8 @@ html, body {
 .chaohgg-title-card {
     margin: 0;
     margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: none;
 }
 
 .chaohgg-body-card,
