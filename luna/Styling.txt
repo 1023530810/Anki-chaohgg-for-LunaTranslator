@@ -346,8 +346,7 @@ html, body {
     top: var(--dict-sticky-offset);
     z-index: 3;
     background: inherit;
-    padding-top: 0.2em;
-    padding-bottom: 0.4em;
+    padding: 0;
 }
 
 .centertext {
