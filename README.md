@@ -40,4 +40,8 @@
 - **拖拽分隔条不显示**：仅双栏且词典可见时显示；单栏或隐藏词典时自动隐藏。
 - **样式未刷新**：确保保存模板后重新打开预览或切换卡片。若外部修改文件，需要再次粘贴到 Anki 内。
 
+## 😘 相关项目
+- [LunaTranslator](https://github.com/HIllya51/LunaTranslator)
+- [anki-quizify](https://github.com/e-chehil/anki-quizify)
+
 Enjoy your study! 🚀
