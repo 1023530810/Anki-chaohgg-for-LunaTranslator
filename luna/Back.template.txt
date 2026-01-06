@@ -3,7 +3,6 @@
         <div class="luna-pane luna-pane--main">
             <div class="luna-pane-content">
                 <div class="hide-style">
-                    <div id="audio">{{audio_for_word}}</div>
                     <div id="audio_sentence">{{audio_for_example_sentence}}</div>
                 </div>
 
@@ -168,6 +167,7 @@
 
         document.getElementById('tab_buttons').innerHTML = htmltabbuttons;
         document.getElementById('tab_contents').innerHTML = htmlcontents;
+        updateDictStickyOffsets(dictCard);
         for (var iiii = 0; iiii < scriptElementss.length; iiii++) {
             var inlineScript = scriptElementss[iiii];
             var externalSrc = scriptElementsssrc[iiii];
@@ -198,6 +198,12 @@
         if (dictCard) dictCard.classList.add('hide-style');
         if (dictPane) dictPane.classList.add('hide-style');
         if (frame) frame.classList.add('luna-frame--single');
+    }
+    function updateDictStickyOffsets(dictCard) {
+        var buttons = document.getElementById('tab_buttons');
+        if (!buttons || !dictCard) return;
+        var height = buttons.getBoundingClientRect().height || 0;
+        dictCard.style.setProperty('--dict-tabs-height', height + 'px');
     }
     function checkhide(eid) {
         var emptyDiv = document.getElementById(eid);

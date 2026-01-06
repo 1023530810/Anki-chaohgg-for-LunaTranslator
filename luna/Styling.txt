@@ -10,6 +10,7 @@
     --card-gap: 1.2em;
     --pane-radius: 0.6em;
     --dict-sticky-offset: 0.8em;
+    --dict-tabs-height: 0px;
     --img-width: 100%;
     --img-brightness: 1;
     --img-filter: none;
@@ -356,6 +357,9 @@ html, body {
     font-family: BIZ UDGothic;
     font-size: 18px;
     display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
     padding: 0.75em 1em;
     margin: 0.2em 0;
     background-color: rgba(247, 244, 237, 0.8);
@@ -530,7 +534,7 @@ u {
     position: sticky;
     top: var(--dict-sticky-offset);
     z-index: 4;
-    background: inherit;
+    background-color: var(--card-bg);
 }
 
 .chaohgg-dict-card .tab-pane {
@@ -546,14 +550,9 @@ u {
     width: 100% !important;
     position: -webkit-sticky !important;
     position: sticky !important;
-    top: var(--dict-sticky-offset) !important;
+    top: calc(var(--dict-sticky-offset) + var(--dict-tabs-height, 0px)) !important;
     z-index: 4 !important;
-    background: inherit;
-}
-
-.luna-pane--dict .luna-pane-content {
-    align-items: stretch;
-    overflow: hidden;
+    background-color: var(--card-bg);
 }
 
 .luna-pane--dict .chaohgg-dict-card {
@@ -561,6 +560,18 @@ u {
     position: relative;
     overflow: auto;
     height: 100%;
+    padding-top: 0;
+    --dict-sticky-offset: 0px;
+}
+
+.luna-pane--dict #tab_buttons {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.luna-pane--dict .luna-pane-content {
+    align-items: stretch;
+    overflow: hidden;
 }
 
 .chaohgg-dict-card {
