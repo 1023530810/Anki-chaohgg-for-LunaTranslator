@@ -2,6 +2,10 @@
 
 简洁双栏布局的日语/多语言卡片模板，支持可拖拽分隔条、词典多标签页、例句与备注格式化、夜间模式适配等。
 
+<img width="2940" height="1846" alt="image" src="https://github.com/user-attachments/assets/8b2ca638-a60a-41e6-a068-6cc8e555828e" />
+
+<img width="2940" height="1846" alt="image" src="https://github.com/user-attachments/assets/2974b4ff-e407-4738-84c6-cb52856844ca" />
+
 ## 🗂️ 文件结构
 - `luna/Front.template.txt`：正面模板，显示单词与假名/注音。
 - `luna/Back.template.txt`：反面模板，包含例句、备注、截图、词典标签页和拖拽分隔条逻辑。
