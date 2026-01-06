@@ -614,3 +614,31 @@ u {
 .chaohgg-dict-card::-webkit-scrollbar {
     display: none;
 }
+
+/* 分隔条（仅双栏显示） */
+.luna-splitter {
+    flex: 0 0 auto;
+    width: 6px;
+    margin: 0 0.25em;
+    background: var(--divider);
+    border-radius: 999px;
+    cursor: col-resize;
+    align-self: stretch;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.luna-splitter:hover {
+    background: var(--link-fg);
+}
+
+.luna-frame--single .luna-splitter {
+    display: none;
+}
+
+.card.nightMode .luna-splitter {
+    background: var(--divider);
+}
+
+.card.nightMode .luna-splitter:hover {
+    background: var(--link-fg);
+}

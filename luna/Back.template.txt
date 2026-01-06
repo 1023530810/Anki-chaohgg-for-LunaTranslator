@@ -27,6 +27,8 @@
             </div>
         </div>
 
+        <div id="luna_splitter" class="luna-splitter hide-style"></div>
+
         <div class="luna-pane luna-pane--dict">
             <div class="luna-pane-content">
                 <div id="dict_card" class="chaohgg-dict-card">
@@ -186,6 +188,7 @@
         if (dictPane) {
             dictPane.classList.remove('hide-style');
         }
+        setupSplitter();
     }
 
     function playAudio(audioId) {
@@ -199,6 +202,8 @@
         if (dictCard) dictCard.classList.add('hide-style');
         if (dictPane) dictPane.classList.add('hide-style');
         if (frame) frame.classList.add('luna-frame--single');
+        var splitter = document.getElementById('luna_splitter');
+        if (splitter) splitter.classList.add('hide-style');
     }
     function updateDictStickyOffsets(dictCard) {
         if (!dictCard) return;
@@ -218,6 +223,63 @@
             centerHeight = rect.height + marginTop + marginBottom;
         }
         dictCard.style.setProperty('--dict-centerdiv-height', centerHeight + 'px');
+    }
+
+    function setupSplitter() {
+        var frame = document.querySelector('.luna-frame');
+        var mainPane = document.querySelector('.luna-pane--main');
+        var dictPane = document.querySelector('.luna-pane--dict');
+        var splitter = document.getElementById('luna_splitter');
+        if (!frame || !mainPane || !dictPane || !splitter) return;
+
+        var isSingle = frame.classList.contains('luna-frame--single') || dictPane.classList.contains('hide-style');
+        splitter.classList.toggle('hide-style', isSingle);
+        if (isSingle) return;
+
+        if (splitter.dataset.bound === 'true') return;
+        splitter.dataset.bound = 'true';
+
+        var storageKey = 'luna_split_ratio_v1';
+
+        function applySplitRatio(ratio) {
+            var clamped = Math.min(0.85, Math.max(0.15, ratio));
+            mainPane.style.flex = clamped + ' 1 0%';
+            dictPane.style.flex = (1 - clamped) + ' 1 0%';
+            return clamped;
+        }
+
+        var saved = parseFloat(localStorage.getItem(storageKey));
+        if (saved > 0 && saved < 1) {
+            applySplitRatio(saved);
+        }
+
+        var dragging = false;
+
+        function startDrag(e) {
+            if (frame.classList.contains('luna-frame--single')) return;
+            dragging = true;
+            e.preventDefault();
+        }
+
+        function endDrag() {
+            dragging = false;
+        }
+
+        function onMove(e) {
+            if (!dragging) return;
+            var point = e.touches && e.touches.length ? e.touches[0] : e;
+            var rect = frame.getBoundingClientRect();
+            var ratio = (point.clientX - rect.left) / rect.width;
+            var applied = applySplitRatio(ratio);
+            localStorage.setItem(storageKey, applied.toFixed(3));
+        }
+
+        splitter.addEventListener('mousedown', startDrag);
+        splitter.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('touchend', endDrag);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('touchmove', onMove, { passive: false });
     }
     function checkhide(eid) {
         var emptyDiv = document.getElementById(eid);
