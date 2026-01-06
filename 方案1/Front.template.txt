@@ -1,0 +1,61 @@
+<div class="chaohgg-flashcard">
+    <div class="hide-style">
+        <div id="audio">{{audio_for_word}}</div>
+    </div>
+
+    <div class="chaohgg-title-card">
+        <div class="centerdiv ruby-div" onclick='playAudio("audio")'>
+            <div class="ruby-div" id="word">{{ word }}</div>
+            <div id="rubyword" class="ruby-div">{{ rubytextHtml }}</div>
+        </div>
+    </div>
+
+    <div class="chaohgg-body-card">
+        <div id="example_sentence" class="example-div" onclick='playAudio("audio_sentence")'>
+            {{example_sentence}}
+        </div>
+        <div id="image" class="centerdiv">
+            {{screenshot}}
+        </div>
+    </div>
+</div>
+
+<script>
+    (function initFront() {
+        toggleRuby();
+        checkhide("example_sentence");
+        checkhide2("image");
+        checkhide("remarks");
+    })();
+
+    function toggleRuby() {
+        var ruby = document.getElementById('rubyword');
+        var word = document.getElementById('word');
+        if (!ruby || !word) return;
+        if (ruby.innerHTML.trim().length > 0) {
+            word.classList.add("hide-style");
+        } else {
+            ruby.classList.add("hide-style");
+        }
+    }
+
+    function playAudio(audioId) {
+        var audioDiv = document.getElementById(audioId);
+        var audio = audioDiv ? audioDiv.getElementsByTagName('*') : [];
+        if (audio.length > 0) {
+            audio[0].click();
+        }
+    }
+    function checkhide(eid) {
+        var emptyDiv = document.getElementById(eid);
+        if (emptyDiv && emptyDiv.innerText.trim() === "") {
+            emptyDiv.classList.add("hide-style");
+        }
+    }
+    function checkhide2(eid) {
+        var emptyDiv = document.getElementById(eid);
+        if (emptyDiv && emptyDiv.children.length == 0) {
+            emptyDiv.classList.add("hide-style");
+        }
+    }
+</script>
